@@ -1,0 +1,56 @@
+# API Contracts: Todo CLI Application
+
+## Todo Operations Contract
+
+### Add Todo
+- **Command**: `add "description"`
+- **Input**: String description (non-empty)
+- **Output**: Success message with assigned ID
+- **Error Cases**:
+  - Empty description → "Error: Description cannot be empty"
+  - Invalid format → "Error: Invalid command format"
+
+### View Todos
+- **Command**: `view`
+- **Input**: None
+- **Output**: List of todos with ID, description, and status
+- **Format**: `ID - Description [X| ]`
+- **Error Cases**: None
+
+### Update Todo
+- **Command**: `update <id> "new description"`
+- **Input**: Integer ID, non-empty string description
+- **Output**: Success message
+- **Error Cases**:
+  - Invalid ID → "Error: Todo with ID <id> not found"
+  - Empty description → "Error: Description cannot be empty"
+  - Invalid format → "Error: Invalid command format"
+
+### Mark Complete
+- **Command**: `complete <id>`
+- **Input**: Integer ID
+- **Output**: Success message
+- **Error Cases**:
+  - Invalid ID → "Error: Todo with ID <id> not found"
+  - Invalid format → "Error: Invalid command format"
+
+### Delete Todo
+- **Command**: `delete <id>`
+- **Input**: Integer ID
+- **Output**: Success message
+- **Error Cases**:
+  - Invalid ID → "Error: Todo with ID <id> not found"
+  - Invalid format → "Error: Invalid command format"
+
+## CLI Interface Contract
+
+### Input Validation
+- All commands must be properly formatted
+- IDs must be positive integers
+- Descriptions must be non-empty strings
+- Unrecognized commands return help message
+
+### Output Format
+- Success messages: "Operation completed successfully"
+- Error messages: "Error: descriptive message"
+- Todo list format: `ID - Description [X]` for complete, `ID - Description [ ]` for incomplete
